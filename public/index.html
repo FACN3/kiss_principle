@@ -6,7 +6,17 @@
 </head>
 
 <body>
-  <div id="con"></div>
+  <div id="search_bar">
+    <form id="form"> <!--action="/get_reviews"  -->
+      <input type="text" autocomplete="off" onkeyup="getPlaces()" list="coffee_shops" name="search" id="dropdown" />
+      <input type="submit"/>
+    </form>
+  </div>
+
+
+  <div id="con">
+  
+  </div>
   <form action="/add_user" method="post">
     user name:<br />
     <input type="text" value="user name" name="user_name" /><br /> password:
@@ -24,25 +34,25 @@
       <option value="Mind your own business"></option>
     </datalist>
     <br><br>
-    <input type="submit" value="Submit"/> </form>
-<br><br>
+    <input type="submit" value="Submit" /> </form>
+  <br><br>
 
 
-    <form action="/add_review" method="post">
+  <form action="/add_review" method="post">
 
-      user id:<br>
-      <input type="number" value="user id" name="user_id" />
-      <br> place id:<br>
-      <input type="number" value="place id" name="place_id" />
+    user id:<br>
+    <input type="number" value="user id" name="user_id" />
+    <br> place id:<br>
+    <input type="number" value="place id" name="place_id" />
 
-      <br>Comment <br>
-     <textarea rows="4" cols="50" value="review" name="review"></textarea> <br>
-     Rating: <br>
-     <input type="number" name="rating" min="1" max="5"> <br><br>
+    <br>Comment <br>
+    <textarea rows="4" cols="50" value="review" name="review"></textarea> <br> Rating: <br>
+    <input type="number" name="rating" min="1" max="5"> <br><br>
 
-      <input type="submit" value="Submit"/></form>
+    <input type="submit" value="Submit" /></form>
 
 </body>
 
+<script src="./index.js"></script>
 
 </html>
