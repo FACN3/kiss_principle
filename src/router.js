@@ -5,6 +5,7 @@ const get_places = require("./database/get_places");
 const get_reviews = require("./database/get_reviews");
 const qs = require("querystring");
 
+
 console.log("typeof add_user", typeof add_user);
 
 const router = (req, res) => {
@@ -29,6 +30,7 @@ const router = (req, res) => {
   } else if (url === "/get_places") {
     get_places(res);
   } else if (url === "/add_user") {
+
     var data = "";
     req.on("data", chunk => {
       data += chunk;
