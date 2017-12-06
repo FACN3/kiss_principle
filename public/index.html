@@ -4,7 +4,26 @@
 <head>
   <title> Nazareth Foods and Coffee</title>
 </head>
+
 <body>
+  <form action="#" method="post">
+    user name:<br />
+    <input type="text" value="user name" name="user_name" /><br /> password:
+    <br />
+    <input type="password" value="password" name="password" /><br /> age
+    </br>
+    <input type="number" name="age" /> <br /> email:
+    <br />
+    <input type="email" value="john.smith@gmail.com" name="email" />
+    <br /> gender <br />
+    <input list="gender" name="gender" />
+    <datalist id="gender">
+      <option value="Female"></option>
+      <option value="Male"></option>
+      <option value="Mind your own business"></option>
+    </datalist>
+    <br />
+    <input type="submit" value="Submit" onclick="alert('You pressed Submit button')"/> </form>
 
 </body>
 
