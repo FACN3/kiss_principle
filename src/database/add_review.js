@@ -17,4 +17,4 @@ const add_review = (user_id, place_id, review, rating, response) => {
     }
   );
 };
-module.exports = add_place;
+module.exports = add_review;

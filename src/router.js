@@ -1,8 +1,9 @@
 const handler = require("./handler");
-const add_user =require ("./database/add_user");
+const add_user = require("./database/add_user");
+const add_review = require("./database/add_review")
 const qs = require("querystring");
 
-console.log('typeof add_user', typeof add_user);
+console.log("typeof add_user", typeof add_user);
 
 const router = (req, res) => {
   const { url } = req;
@@ -11,25 +12,41 @@ const router = (req, res) => {
   const type = { "/": "text/html" }[url];
   if (url === "/") {
     handler(filePath, type, res);
-  }else if(url==="/add_user"){
-
+  } else if (url === "/add_user") {
     var data = "";
-    req.on("data" ,(chunk)=>{
-        data += chunk;
-
-
+    req.on("data", chunk => {
+      data += chunk;
     });
     req.on("end", () => {
       console.log(data);
-      console.log('parsed string', qs.parse(data));
-      const user = qs.parse(data)
-      add_user(user.user_name, user.password,parseInt(user.age),user.email,user.gender,res);
-
-
-
+      console.log("parsed string", qs.parse(data));
+      const user = qs.parse(data);
+      add_user(
+        user.user_name,
+        user.password,
+        parseInt(user.age),
+        user.email,
+        user.gender,
+        res
+      );
     });
-
-
+  } else if (url === "/add_review") {
+    var data = "";
+    req.on("data", chunk => {
+      data += chunk;
+    });
+    req.on("end", () => {
+      console.log(data);
+      console.log("parsed string", qs.parse(data));
+      const review = qs.parse(data);
+      add_review(
+        3,
+        Math.floor(Math.random() * 10) + 1,
+        review.review,
+        parseInt(review.rating),
+        res
+      );
+    });
   } else {
     res.writeHead(404);
     res.end("Not Found ");
