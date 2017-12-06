@@ -1,3 +1,4 @@
+//I DON'T GET IT :(
 const pl = require("./db_connection");
 const get_places = response => {
   pl.query("SELECT * from places", (err, res) => {
