@@ -6,6 +6,7 @@
 </head>
 
 <body>
+  <div id="con"></div>
   <form action="/add_user" method="post">
     user name:<br />
     <input type="text" value="user name" name="user_name" /><br /> password:
@@ -22,10 +23,24 @@
       <option value="Male"></option>
       <option value="Mind your own business"></option>
     </datalist>
-    <br />
+    <br><br>
     <input type="submit" value="Submit"/> </form>
+<br><br>
 
-    
+
+    <form action="/add_review" method="post">
+
+      user id:<br>
+      <input type="number" value="user id" name="user_id" />
+      <br> place id:<br>
+      <input type="number" value="place id" name="place_id" />
+
+      <br>Comment <br>
+     <textarea rows="4" cols="50" value="review" name="review"></textarea> <br>
+     Rating: <br>
+     <input type="number" name="rating" min="1" max="5"> <br><br>
+
+      <input type="submit" value="Submit"/></form>
 
 </body>
 
