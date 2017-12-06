@@ -7,12 +7,16 @@ const add_place = (name, user_id, location, address, response) => {
       if (err) {
         console.log(err);
         console.log("error");
-        response.writeHead(500);
-        response.end();
+        if (response) {
+          response.writeHead(500);
+          response.end();
+        }
       } else {
         console.log("success");
-        response.writeHead(200);
-        response.end("success");
+        if (response) {
+          response.writeHead(200);
+          response.end("success");
+        }
       }
     }
   );
