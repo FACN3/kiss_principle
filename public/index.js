@@ -20,15 +20,18 @@ function populate(places) {
   places.forEach(function(place) {
     var place_name = document.createElement("option");
     place_name.value = place.name;
-    place_name.setAttribute("onClick", function() {
-      console.log("aer");
-    });
     list.appendChild(place_name);
   });
 }
 
 function display_review(response) {
   var div = document.getElementById("con");
+  while (div.firstChild) {
+    div.firstChild.remove();
+  }
+
+  var map = document.createElement("div");
+  map.className = "map";
   var data = response.rows;
   document.getElementById("place_id").value = response.id;
   if (data.length > 0) {
@@ -42,6 +45,8 @@ function display_review(response) {
     review.textContent = "There is no reviews for this cafe";
     div.appendChild(review);
   }
+  div.appendChild(map);
+  showMap(response.location, response.name, map);
 }
 
 document.getElementById("form").addEventListener("submit", getReviews);
@@ -65,5 +70,18 @@ function getReviews(event) {
     xhr.open("GET", "/get_review?" + word, "true");
     xhr.send();
   }
+}
+function showMap(location, name, mapDiv) {
+  console.log("Ere");
+  map = new google.maps.Map(mapDiv, {
+    center: { lat: location.x, lng: location.y },
+    zoom: 15
+  });
+
+  var marker = new google.maps.Marker({
+    position: map.getCenter(),
+    map: map,
+    title: name
+  });
 }
 getPlaces();
