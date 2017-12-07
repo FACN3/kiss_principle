@@ -3,13 +3,23 @@ const add_user = require("./database/add_user");
 const add_review = require("./database/add_review");
 const get_places = require("./database/get_places");
 const get_reviews = require("./database/get_reviews");
-const utf8 = require("utf8");
 
 const qs = require("querystring");
+let response;
+const cb = (err) => {
+  if(err) {
+    response.writeHead(500);
+    response.end();
+  }
+  console.log('success');
+  response.writeHead(302,{'Location':'/'});
+  response.end();
+}
 
 console.log("typeof add_user", typeof add_user);
 
 const router = (req, res) => {
+  response = res;
   const { url } = req;
   console.log("requested url: ", url);
   // const url = req.url;
@@ -47,7 +57,7 @@ const router = (req, res) => {
         parseInt(user.age),
         user.email,
         user.gender,
-        res
+        cb
       );
     });
   } else if (url === "/add_review") {
@@ -64,7 +74,7 @@ const router = (req, res) => {
         review.place_id,
         review.review,
         parseInt(review.rating),
-        res
+        cb
       );
     });
   } else {

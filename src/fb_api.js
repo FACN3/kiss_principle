@@ -17,7 +17,7 @@ const fb_api = () => {
         8,
         `(${place.location.latitude},${place.location.longitude})`,
         `${place.location.street}, ${place.location.street}`,
-        null
+        cb
       );
     });
     if (data.length > 0) {
@@ -26,5 +26,15 @@ const fb_api = () => {
     }
   });
 };
+
+const cb = (err,res)=>{
+  if(err){
+    console.log("Error"+err);
+  }else{
+    console.log("Success");
+  }
+
+
+}
 
 module.exports = fb_api;
