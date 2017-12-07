@@ -8,14 +8,14 @@
 <body>
   <div id="search_bar">
     <form id="form"> <!--action="/get_reviews"  -->
-      <input type="text" autocomplete="off" onkeyup="getPlaces()" list="coffee_shops" name="search" id="dropdown" />
+      <input type="text" autocomplete="off" list="coffee_shops" name="search" id="dropdown" />
       <input type="submit"/>
     </form>
   </div>
 
 
   <div id="con">
-  
+
   </div>
   <form action="/add_user" method="post">
     user name:<br />
@@ -43,7 +43,7 @@
     user id:<br>
     <input type="number" value="user id" name="user_id" />
     <br> place id:<br>
-    <input type="number" value="place id" name="place_id" />
+    <input type="number" value="place id" id = "place_id" name="place_id" />
 
     <br>Comment <br>
     <textarea rows="4" cols="50" value="review" name="review"></textarea> <br> Rating: <br>

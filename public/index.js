@@ -1,13 +1,9 @@
-console.log('index.js run');
-
 function getPlaces() {
   //console.log('trying to run');
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState == 4 && xhr.status == 200) {
       populate(JSON.parse(xhr.responseText));
-      //console.log('we are here');
-      console.log(xhr.responseText);
     }
   };
   xhr.open("GET", "/get_places", "true");
@@ -18,42 +14,45 @@ function getPlaces() {
 function populate(places) {
   var bar = document.getElementById("search_bar");
   var list = document.createElement("datalist");
-  var input = document.getElementById("dropdown")
-  list.id = "coffee_shops"
+  var input = document.getElementById("dropdown");
+  list.id = "coffee_shops";
   input.appendChild(list);
   places.forEach(function(place) {
-    var name = document.createElement("option");
-    name.value = place.name;
-    list.appendChild(name);
+    var place_name = document.createElement("option");
+    place_name.value = place.name;
+    place_name.setAttribute("onClick", function() {
+      console.log("aer");
+    });
+    list.appendChild(place_name);
   });
 }
 
-function display_review(data) {
+function display_review(response) {
   var div = document.getElementById("con");
-  if(data){
+  var data = response.rows;
+  document.getElementById("place_id").value = response.id;
+  if (data.length > 0) {
     data.forEach(function(element) {
       var review = document.createElement("h2");
       review.textContent = element.review;
       div.appendChild(review);
-    })
-  }
-  else{
+    });
+  } else {
     var review = document.createElement("h2");
-    review.textContent = 'There is no reviews for this cafe';
+    review.textContent = "There is no reviews for this cafe";
     div.appendChild(review);
   }
 }
 
-document.getElementById('form').addEventListener('submit', getReviews)
+document.getElementById("form").addEventListener("submit", getReviews);
 
-
-function getReviews(event){
-  console.log('event', event);
+function getReviews(event) {
+  console.log("event", event);
   event.preventDefault();
-  console.log('trying to get reviews');
+  console.log("trying to get reviews");
   var xhr = new XMLHttpRequest();
-  word = document.getElementById('dropdown').value;
-  console.log('lets get the data');
+  word = document.getElementById("dropdown").value;
+  console.log("lets get the data");
   xhr.onreadystatechange = function() {
     if (xhr.readyState == 4 && xhr.status == 200) {
       // populate(JSON.parse(xhr.responseText));
@@ -63,7 +62,8 @@ function getReviews(event){
     }
   };
   if (word) {
-    xhr.open("GET", '/get_review?' + word, "true");
+    xhr.open("GET", "/get_review?" + word, "true");
     xhr.send();
   }
 }
+getPlaces();
