@@ -7,8 +7,9 @@ let url = `https://graph.facebook.com/v2.11/search?type=place&center=32.69925,35
 }`;
 
 const fb_api = () => {
+  console.log("here");
   request.get(url, (error, response, body) => {
-    const { data, Pagging: next } = JSON.parse(body);
+    const { data, paging } = JSON.parse(body);
 
     data.forEach(place => {
       add_place(
@@ -19,8 +20,8 @@ const fb_api = () => {
         null
       );
     });
-    if (next) {
-      url = next;
+    if (data.length > 0) {
+      url = paging.next;
       fb_api();
     }
   });
