@@ -1,3 +1,4 @@
+var placesObj = {};
 function getPlaces() {
   //console.log('trying to run');
   var xhr = new XMLHttpRequest();
@@ -20,6 +21,7 @@ function populate(places) {
   places.forEach(function(place) {
     var place_name = document.createElement("option");
     place_name.value = place.name;
+    placesObj[place.name] = place.id;
     list.appendChild(place_name);
   });
 }
@@ -67,7 +69,8 @@ function getReviews(event) {
     }
   };
   if (word) {
-    xhr.open("GET", "/get_review?" + word, "true");
+    console.log(placesObj[word]);
+    xhr.open("GET", "/get_review?" + placesObj[word], "true");
     xhr.send();
   }
 }

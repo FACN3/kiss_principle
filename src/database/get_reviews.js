@@ -1,7 +1,7 @@
 const pl = require("./db_connection");
 const get_reviews = (response, cafe) => {
   pl.query(
-    "SELECT id,location,name FROM places WHERE name = $1",
+    "SELECT id,location,name FROM places WHERE id = $1",
     [cafe],
     (err1, res_id) => {
       console.log("CAfe name is                    :" + cafe);
