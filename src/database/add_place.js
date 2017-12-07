@@ -1,23 +1,10 @@
 const pl = require("./db_connection");
-const add_place = (name, user_id, location, address, response) => {
+const add_place = (name, user_id, location, address, cb) => {
   pl.query(
     "INSERT INTO places(name , user_id , location ,address) VALUES ($1, $2, $3, $4);",
     [name, user_id, location, address],
     (err, res) => {
-      if (err) {
-        console.log(err);
-        console.log("error");
-        if (response) {
-          response.writeHead(500);
-          response.end();
-        }
-      } else {
-        console.log("success");
-        if (response) {
-          response.writeHead(200);
-          response.end("success");
-        }
-      }
+      cb(err, res);
     }
   );
 };

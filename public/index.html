@@ -4,18 +4,19 @@
 <head>
   <title> Nazareth Foods and Coffee</title>
 </head>
+<link rel="stylesheet" type="text/css" href="./style.css" />
 
-<body>
+<body class="tak">
   <div id="search_bar">
     <form id="form"> <!--action="/get_reviews"  -->
-      <input type="text" autocomplete="off" onkeyup="getPlaces()" list="coffee_shops" name="search" id="dropdown" />
+      <input type="text" autocomplete="off" list="coffee_shops" name="search" id="dropdown" />
       <input type="submit"/>
     </form>
   </div>
 
 
   <div id="con">
-  
+
   </div>
   <form action="/add_user" method="post">
     user name:<br />
@@ -43,7 +44,7 @@
     user id:<br>
     <input type="number" value="user id" name="user_id" />
     <br> place id:<br>
-    <input type="number" value="place id" name="place_id" />
+    <input type="number" value="place id" id = "place_id" name="place_id" />
 
     <br>Comment <br>
     <textarea rows="4" cols="50" value="review" name="review"></textarea> <br> Rating: <br>
@@ -51,8 +52,8 @@
 
     <input type="submit" value="Submit" /></form>
 
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9JvgnmyWXJgAVc7trIDI_XF1k3EOdtPY" ></script>
+    <script src="./index.js"></script>
 </body>
-
-<script src="./index.js"></script>
 
 </html>
