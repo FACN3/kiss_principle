@@ -3,8 +3,9 @@ const add_user = require("./database/add_user");
 const add_review = require("./database/add_review");
 const get_places = require("./database/get_places");
 const get_reviews = require("./database/get_reviews");
-const qs = require("querystring");
+const utf8 = require("utf8");
 
+const qs = require("querystring");
 
 console.log("typeof add_user", typeof add_user);
 
@@ -14,14 +15,16 @@ const router = (req, res) => {
   // const url = req.url;
   const filePath = {
     "/": __dirname + "/../public/index.html",
-    "/index.js": __dirname + "/../public/index.js"
+    "/index.js": __dirname + "/../public/index.js",
+    "/style.css": __dirname + "/../public/style.css"
   }[url];
   const type = {
     "/": "text/html",
-    "/index.js": "application/javascript"
+    "/index.js": "application/javascript",
+    "/style.css": "text/css"
   }[url];
 
-  if (url === "/" || url === "/index.js") {
+  if (url === "/" || url === "/index.js" || url === "/style.css") {
     handler(filePath, type, res);
   } else if (url.indexOf("get_review") === 1) {
     var cafe = url.substring(url.indexOf("?") + 1);
@@ -30,7 +33,6 @@ const router = (req, res) => {
   } else if (url === "/get_places") {
     get_places(res);
   } else if (url === "/add_user") {
-
     var data = "";
     req.on("data", chunk => {
       data += chunk;
