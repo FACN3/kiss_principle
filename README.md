@@ -1,6 +1,6 @@
 # :confetti_ball::confetti_ball:Kiss_Principle:confetti_ball::confetti_ball:
 
-Access our site here: XXXX
+Access our site here: https://welvondb.herokuapp.com
 
 ## This week: Setup a database which is connected to via a node.js server. Using your own data, make a dynamic web app for your front-end.
 
