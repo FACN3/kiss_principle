@@ -8,7 +8,7 @@ fs.readFileSync(__dirname + '/../config.env', (err, file) => {
   console.log(file);
 });
 */
-//fb_places();
+fb_places();
 //console.log('env2', env2);
 const port = process.env.PORT || 3003;
 const host = process.env.HOST || "localhost";
